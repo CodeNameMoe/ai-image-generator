@@ -47,17 +47,17 @@ const CreatePost = () => {
 
     if (form.prompt && form.photo) {
       setLoading(true);
-
       try {
         const response = await fetch("http://localhost:8080/api/v1/post", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(form),
+          body: JSON.stringify({ ...form }),
         });
 
         await response.json();
+        alert("Success");
         navigate("/");
       } catch (err) {
         alert(err);
@@ -65,7 +65,7 @@ const CreatePost = () => {
         setLoading(false);
       }
     } else {
-      alert("please enter a prompt and generate an image");
+      alert("Please generate an image with proper details");
     }
   };
 
